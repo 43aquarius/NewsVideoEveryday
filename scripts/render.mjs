@@ -24,6 +24,9 @@ if (!stills) {
 }
 const out = path.join(ROOT, "out", timestamp());
 fs.mkdirSync(out, { recursive: true });
+// 定制: 沙箱内用已有的 chrome-headless-shell(Chrome for Testing 143
+// 已移除旧 headless 模式, Remotion 默认启动会失败)
+const CHROME_MODE = process.env.REMOTION_CHROME_MODE || "headless-shell";
 const executable =
   process.env.REMOTION_BROWSER_EXECUTABLE || chromium.executablePath();
 if (!fs.existsSync(executable))
@@ -32,7 +35,10 @@ const serveUrl = await bundle({
   entryPoint: path.join(ROOT, "src/index.ts"),
   publicDir: path.join(ROOT, "public"),
 });
-const browser = await openBrowser("chrome", { browserExecutable: executable });
+const browser = await openBrowser("chrome", {
+  browserExecutable: executable,
+  ...(CHROME_MODE ? { chromeMode: CHROME_MODE } : {}),
+});
 try {
   const composition = await selectComposition({
     serveUrl,
