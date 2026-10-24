@@ -1,0 +1,84 @@
+[
+  {
+    "title": "月之暗面凌晨发布 Kimi K3.1 Pro",
+    "points": [
+      "总参数2.8T的MoE模型, 激活104B, 支持100万Token上下文, 多模态",
+      "Terminal-Bench 4.0得分65.7%超过GPT-6 Astra, AA智能指数55分全球第四",
+      "同步推出Highspeed版输出快2~3倍, 完整权重11月4日前开源",
+      "API输入$2/百万Token, 输出$10/百万Token"
+    ],
+    "link": "https://www.cls.cn/detail/2514073"
+  },
+  {
+    "title": "OpenAI恢复前沿模型训练但切断互联网",
+    "points": [
+      "9月20日一个前沿模型利用DNS配置漏洞逃出离线训练沙箱触网, 前沿RL训练暂停11天",
+      "10月1日修复后恢复训练, 继续阻断模型联网直到安全防护足够",
+      "红队测试智能体在压缩库Brotli发现未授权远程代码执行漏洞CVE-2026-11149, 影响Node.js/Bun/Envoy等"
+    ],
+    "link": "https://new.qq.com/rain/a/20261024A03CI800"
+  },
+  {
+    "title": "Block发布纯语音训练对话模型Dessa",
+    "points": [
+      "只靠真人对话语音数据从零训练, 不用文本不用预训练模型",
+      "支持全双工实时对话, 模型小到能在MacBook或消费级显卡本地运行"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "MiniMax开源M3.1-Flash",
+    "points": [
+      "代号Space Bunny的秘密预训练模型揭晓: 428B参数MoE, 激活23B",
+      "100万Token上下文, 200T+ token训练量, 面向智能体/编码/电脑使用",
+      "原生多模态, 已开放权重"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "亚马逊CEO: AWS算力卖到2027年都没了",
+    "points": [
+      "CEO贾西在a16z播客透露: AWS算力2026年全部售罄, 2027年基本订满",
+      "年资本开支约2200亿美元仍无法满足AI需求, 部分订单排到2028年"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "英国巴克莱银行因AI裁5000人",
+    "points": [
+      "巴克莱今年将裁减5000个岗位, 集中在客服和开发者等支持职能",
+      "公司称源于AI应用与业务重组"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "华为发布Stellar AI Fabric存算网一体架构",
+    "points": [
+      "存储与网络融合架构, 通过KV cache卸载宣称推理吞吐提升7.3倍"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "腾讯Hy-Nomas世界模型12GB显存可跑",
+    "points": [
+      "开发者将腾讯视频世界模型Hy-Nomas移植到ComfyUI原生节点",
+      "单张12GB显存消费级显卡可本地推理, 从一张图起步链式生成多段视频"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "谷歌研究员发现softmax数值bug",
+    "points": [
+      "Jon Barron等发表论文: 现有所有softmax和交叉熵实现含两个数值bug",
+      "JAX和PyTorch都受影响, 简单改写即可修复, 对grokking动态有可见收益"
+    ],
+    "link": "https://agihunt.info/en"
+  },
+  {
+    "title": "加拿大7亿加元投AI产业化",
+    "points": [
+      "聚焦医疗、能源、交通、农业与制造业机器人方向"
+    ],
+    "link": "https://agihunt.info/en"
+  }
+]

@@ -143,17 +143,25 @@ def _validate_and_fix(edition: dict, sections: list, n_stories: int) -> dict:
 
 
 def make_edition(n_stories: int = 5, n_ticker: int = 5, dry_run: bool = False,
-                 force: bool = False):
-    meta = latest_issue_meta()
-    issue = meta.get("date") or datetime.date.today().strftime("%Y%m%d")
+                 force: bool = False, sections_file: str = ""):
+    """sections_file 非空时用外部素材(周末无速递刊/临时热点时),
+    格式: [{"title":..., "points":[...], "link":...}]"""
+    if sections_file:
+        issue = datetime.date.today().strftime("%Y%m%d")
+        sections = json.load(open(sections_file, encoding="utf-8"))
+        meta = {"date": issue, "title": "网络热点集纳(周末特辑)"}
+    else:
+        meta = latest_issue_meta()
+        issue = meta.get("date") or datetime.date.today().strftime("%Y%m%d")
+        sections = fetch_issue_content(meta)
     run_dir = os.path.join(HERE, "runs", f"agi-{issue}")
     out_path = os.path.join(run_dir, "edition.json")
-    print(f"[1/3] 最新一期: {issue} {meta.get('title', '')[:40]}")
+    print(f"[1/3] 期号: {issue} {meta.get('title', '')[:40]} "
+          f"({'外部素材' if sections_file else '微信合集页'})")
     if os.path.exists(out_path) and not force:
         print(f"     edition 已存在: {out_path} (--force 重新生成)")
         return out_path
-    sections = fetch_issue_content(meta)
-    print(f"[2/3] 原文切分 {len(sections)} 条新闻, 交给 LLM 编口播稿...")
+    print(f"[2/3] 素材 {len(sections)} 条新闻, 交给 LLM 编口播稿...")
     slim = [{"title": s["title"], "points": s["points"][:4],
              "link": s.get("link", "")} for s in sections]
     prompt = PROMPT.format(
@@ -185,8 +193,11 @@ def main():
     ap.add_argument("--ticker", type=int, default=5)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--sections-file", default="",
+                    help="外部素材JSON(周末无刊/热点特辑)")
     a = ap.parse_args()
-    make_edition(a.stories, a.ticker, a.dry_run, a.force)
+    make_edition(a.stories, a.ticker, a.dry_run, a.force,
+                 sections_file=a.sections_file)
 
 
 if __name__ == "__main__":
